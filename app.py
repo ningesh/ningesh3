@@ -7,7 +7,7 @@ import os
 import numpy as np
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
-
+import h5py
 #########################################################################################################################################
 #                                       initializing database and flask authentication
 #########################################################################################################################################
@@ -131,6 +131,7 @@ def home():
 #########################################################################################################################################
 @app.route('/plntds', methods=['GET', 'POST'])
 def plntds():
+    print('h5py version',h5py.__version__)
     print('hi')
     if 'user' in session:
         if request.method == "POST":
