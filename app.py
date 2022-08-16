@@ -9,6 +9,17 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import h5py
 import json
+
+
+from tensorflow.python.lib.io import file_io
+model_path = "s3://testbucketningesh/model.h5py/"
+model_file = file_io.FileIO(model_path, mode='rb')
+
+temp_model_location = './temp_model.h5py'
+temp_model_file = open(temp_model_location, 'wb')
+temp_model_file.write(model_file.read())
+temp_model_file.close()
+model_file.close()
 #########################################################################################################################################
 #                                       initializing database and flask authentication
 #########################################################################################################################################
@@ -160,8 +171,8 @@ def plntds():
             
            
             print("Loaded model from disk")
-            model_path = "s3://testbucketningesh/model.h5py/"
-            model = load_model(model_path)
+            
+            model = load_model(temp_model_location)
             image_size = 224
             img = image.load_img(predict_dir_path,
                                 target_size=(image_size, image_size))
