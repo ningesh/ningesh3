@@ -8,14 +8,28 @@ import numpy as np
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import h5py
-import json
+import boto3
+from os import listdir
+from os.path import isfile, join
 
 
+import tensorflow
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model
+client = boto3.client('s3')
 from tensorflow.python.lib.io import file_io
 # model_path = "s3://testbucketningesh/model.h5py/"
 # model_file = file_io.FileIO(model_path, mode='rb')
 
 temp_model_location = './temp_model.h5py'
+
+BUCKET_NAME="testbucketningesh"
+client.download_file(BUCKET_NAME,
+                     'model.h5py',
+                     'model.h5py')
+# returns a compiled model
+# identical to the previous one
+model = load_model('model.h5py')
 # temp_model_file = open(temp_model_location, 'wb')
 # temp_model_file.write(model_file.read())
 # temp_model_file.close()
@@ -161,18 +175,12 @@ def plntds():
             # print("printing file name")
             # print(fname)
         
-            from os import listdir
-            from os.path import isfile, join
+            
             predict_dir_path = file_path
-            
-            import tensorflow
-            from tensorflow.keras.preprocessing import image
-            from tensorflow.keras.models import load_model
-            
            
             print("Loaded model from disk")
             
-            model = load_model(temp_model_location)
+            #model = model
             image_size = 224
             img = image.load_img(predict_dir_path,
                                 target_size=(image_size, image_size))
