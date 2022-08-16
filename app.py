@@ -12,14 +12,14 @@ import json
 
 
 from tensorflow.python.lib.io import file_io
-model_path = "s3://testbucketningesh/model.h5py/"
-model_file = file_io.FileIO(model_path, mode='rb')
+# model_path = "s3://testbucketningesh/model.h5py/"
+# model_file = file_io.FileIO(model_path, mode='rb')
 
 temp_model_location = './temp_model.h5py'
-temp_model_file = open(temp_model_location, 'wb')
-temp_model_file.write(model_file.read())
-temp_model_file.close()
-model_file.close()
+# temp_model_file = open(temp_model_location, 'wb')
+# temp_model_file.write(model_file.read())
+# temp_model_file.close()
+# model_file.close()
 #########################################################################################################################################
 #                                       initializing database and flask authentication
 #########################################################################################################################################
