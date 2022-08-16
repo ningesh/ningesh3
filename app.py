@@ -160,7 +160,7 @@ def plntds():
             
            
             print("Loaded model from disk")
-            model_path = "model.h5py"
+            model_path = "s3://testbucketningesh/model.h5py/"
             model = load_model(model_path)
             image_size = 224
             img = image.load_img(predict_dir_path,
