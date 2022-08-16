@@ -158,15 +158,10 @@ def plntds():
             from tensorflow.keras.preprocessing import image
             from tensorflow.keras.models import load_model
             
-            json_file = open('content/model.json', 'r')
-            loaded_model_json = json_file.read()
-# json_file.close()
-            loaded_model = tensorflow.keras.models.model_from_json(loaded_model_json)
-# load weights into new model
-            loaded_model.load_weights("content/model.h5")
+           
             print("Loaded model from disk")
-            # model_path = "model/VGGSKin.h5"
-            # model = load_model(model_path)
+            model_path = "model.h5py"
+            model = load_model(model_path)
             image_size = 224
             img = image.load_img(predict_dir_path,
                                 target_size=(image_size, image_size))
@@ -180,7 +175,7 @@ def plntds():
 
             # images = np.vstack([x])
 
-            predictions = loaded_model.predict(img_4d)
+            predictions = model.predict(img_4d)
             print(predictions[0])
             new_pred=np.argmax(predictions[0])
             print("printing classes")
