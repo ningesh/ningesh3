@@ -156,7 +156,7 @@ def plntds():
             import tensorflow
             from tensorflow.keras.preprocessing import image
             from tensorflow.keras.models import load_model
-            model_path = "./VGGSKin.h5"
+            model_path = "model/VGGSKin.h5"
             model = load_model(model_path)
             image_size = 224
             img = image.load_img(predict_dir_path,
