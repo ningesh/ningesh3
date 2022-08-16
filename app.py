@@ -99,6 +99,7 @@ def login():
         mailid = request.form.get("email")
         password = request.form.get("Pas")
         print(mailid, password)
+        print('h5py version',h5py.__version__)
         con = dbConnection()
         cursor = con.cursor()
         result_count = cursor.execute(
@@ -131,7 +132,7 @@ def home():
 #########################################################################################################################################
 @app.route('/plntds', methods=['GET', 'POST'])
 def plntds():
-    print('h5py version',h5py.__version__)
+    
     print('hi')
     if 'user' in session:
         if request.method == "POST":
